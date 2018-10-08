@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/list/list",
+    "pages/user/user",
+    "pages/detail/detail",
+    "pages/commentList/commentList",
+    "pages/commentDetail/commentDetail",
+    "pages/addComment/addComment"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "black",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "看看侃侃电影",
+    "navigationBarTextStyle": "black"
+  }
+}

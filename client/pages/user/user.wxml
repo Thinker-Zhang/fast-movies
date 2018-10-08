@@ -1,0 +1,35 @@
+<!--pages/user/user.wxml-->
+<view class="user-page">
+  <block wx:if="{{!userInfo}}">
+    <view class="unlogin-card">
+      <view class="unlogin-head"></view>
+      <view class="unlogin-info">
+        <view class="unlogin-text">未登录</view>
+        <view class="unlogin-tips">点击登录后可查看发布的影评</view>
+      </view>
+    </view>
+    <button class="unlogin-btn" open-type='getUserInfo' bindgetuserinfo='onTapLogin'>微信登录</button>
+  </block>
+  <block wx:else>
+    <view class="user-navbar" bindtap="showNavbarAction">
+      <view class="navbar-text">{{currentIndex ? '收藏的影评' : '发布的影评'}}</view>
+      <image class="navbar-icon" src="../../images/arrow.png"></image>
+    </view>
+    <view class="hot-list" wx:for="{{commentList}}" wx:key="id" bindtap="ToCommentDetail" data-idx="{{index}}">
+      <image class="hot-list-image" src="{{item.movie.image}}"></image>
+      <view class="hot-list-info">
+        <view class="hot-list-title">{{item.movie.title}}</view>
+        <view wx:if="{{item.type == 0}}" class="hot-detail-content">{{item.content}}</view>
+        <view wx:else class="comment-audio">
+          <image class="audio-icon" src="../../images/play.png"></image>
+          <text class="audio-text">15s</text>
+        </view>
+        <view class="comment-list-info">
+          <image class="comment-list-avatar" src="{{item.avatar}}"></image>
+          <view class="comment-list-username">{{item.username}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<view class="user-tabbar" bindtap="ToHome">回到首页</view>

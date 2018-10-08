@@ -1,0 +1,13 @@
+<!--pages/detail/detail.wxml-->
+<view class="hot-detail">
+  <image src="{{movieDetail.image}}" class="hot-detail-image"></image>
+  <view class="hot-detail-title">{{movieDetail.title}}</view>
+  <view class="hot-detail-content">{{movieDetail.description}}</view>
+
+  <view class="hot-detail-btn">
+    <view wx:for="{{btn}}" wx:key="text" class="btn-item" bindtap="ToItemBtn" data-idx="{{index}}">
+      <image class="btn-icon" src="{{item.icon}}"></image>
+      <view class="btn-text">{{item.text}}</view>
+    </view>
+  </view>
+</view>

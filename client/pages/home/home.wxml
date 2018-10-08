@@ -1,0 +1,15 @@
+<!--pages/home/home.wxml-->
+<view class="hot-card" bindtap="ToDetail">
+  <image class="hot-image" src="{{hotMovie.image}}" mode="widthFix"></image>
+  <view class="hot-title">{{hotMovie.title}}</view>
+  <view wx:if="{{hotMovie.firstComment}}" class="hot-comment" bindtap="ToCommentDetail">
+    <image class="hot-comment-avatar" src="{{hotMovie.firstComment.avatar}}"></image>
+    <view class="hot-comment-text">{{hotMovie.firstComment.username}} 给你推荐了一部电影</view>
+  </view>
+</view>
+<view class="home-tabbar">
+  <view wx:for="{{tabbar}}" wx:key="text" class="tabbar-item" bindtap="ToItemTab" data-idx="{{index}}">
+    <image class="tabbar-icon" src="{{item.icon}}"></image>
+    <view class="tabbar-text">{{item.text}}</view>
+  </view>
+</view>

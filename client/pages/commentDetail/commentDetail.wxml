@@ -1,0 +1,20 @@
+<!--pages/commentDetail/commentDetail.wxml-->
+<view class="hot-detail">
+  <image src="{{movieDetail.image}}" class="hot-detail-image"></image>
+  <view class="hot-detail-title">{{movieDetail.title}}</view>
+  <view class="comment-list-info">
+    <image class="comment-list-avatar" src="{{commentDetail.avatar}}"></image>
+    <view class="comment-list-username">{{commentDetail.username}}</view>
+  </view>
+  <view wx:if="{{commentDetail.type == 0}}" class="hot-detail-content">{{commentDetail.content}}</view>
+  <view wx:else class="comment-audio" bindtap="palyAudio">
+    <image class="audio-icon" src="../../images/play.png"></image>
+    <text class="audio-text">15s</text>
+  </view>
+  <view class="hot-detail-btn">
+    <view wx:for="{{btn}}" wx:key="text" class="btn-item" bindtap="ToItemBtn" data-idx="{{index}}">
+      <image class="btn-icon" src="{{item.icon}}"></image>
+      <view class="btn-text">{{item.text}}</view>
+    </view>
+  </view>
+</view>

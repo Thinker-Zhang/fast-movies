@@ -1,0 +1,31 @@
+<!--pages/addComment/addComment.wxml-->
+<view class="hot-detail">
+  <image src="{{movieDetail.image}}" class="hot-detail-image"></image>
+  <view class="hot-detail-title">{{movieDetail.title}}</view>
+  <block wx:if="{{!isReview}}">
+    <textarea wx:if="{{c_type == 0}}" class="comment-textarea" placeholder="输入你的影评内容..." maxlength="255" auto-focus="{{true}}" value="{{commentValue}}" bindinput="onInput"></textarea>
+    <view wx:else class="comment-btn" bindtouchstart="onRecord" bindtouchend="stopRecord">
+      <image class="btn-icon" src="../../images/record.png"></image>
+      <view class="btn-text">{{isStart ? '录音' : '正在录音'}}</view>
+    </view>
+    <!-- <view wx:else class="comment-btn" bindtap="chooseImage">上传图片</view> -->
+  </block>
+  <block wx:else>
+    <view class="comment-list-info">
+      <image class="comment-list-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <view class="comment-list-username">{{userInfo.nickName}}</view>
+    </view>
+    <view wx:if="{{c_type == 0}}" class="comment-review">{{commentValue}}</view>
+    <view wx:else class="comment-audio" bindtap="palyAudio">
+      <image class="audio-icon" src="../../images/play.png"></image>
+      <text class="audio-text">15s</text>
+    </view>
+    <view class="hot-detail-btn">
+      <view wx:for="{{btn}}" wx:key="text" class="btn-item" bindtap="ToItemBtn" data-idx="{{index}}">
+        <image class="btn-icon" src="{{item.icon}}"></image>
+        <view class="btn-text">{{item.text}}</view>
+      </view>
+    </view>
+  </block>
+</view>
+<view wx:if="{{!isReview}}" class="comment-tabbar" bindtap="ToReview">完成</view>

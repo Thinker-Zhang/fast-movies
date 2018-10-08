@@ -1,0 +1,8 @@
+<!--pages/list/list.wxml-->
+<view class="hot-list" wx:for="{{movieList}}" wx:key="id" bindtap="ToDetail" data-id="{{item.id}}">
+  <image class="hot-list-image" src="{{item.image}}"></image>
+  <view class="hot-list-info">
+    <view class="hot-list-title">{{item.title}}</view>
+    <view class="hot-list-category">{{item.category}}</view>
+  </view>
+</view>
