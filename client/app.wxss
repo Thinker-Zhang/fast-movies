@@ -278,16 +278,18 @@ page {
 
 /* commentList */
 
+.comment-list-page {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30rpx;
+}
+
 .comment-list-item {
   display: flex;
   flex-direction: column;
   padding: 30rpx 50rpx;
   border-bottom: 2rpx solid #eee;
   background-color: #fff;
-}
-
-.comment-list-item:first-child {
-  margin-top: 30rpx;
 }
 
 .comment-list-info {

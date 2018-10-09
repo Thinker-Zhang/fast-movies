@@ -117,13 +117,34 @@ Page({
     let idx = e.currentTarget.dataset.idx,
       commentDetail = this.data.commentDetail;
     if (idx) {
-      wx.showActionSheet({
-        itemList: ['文字', '音频'],
-        success: res => {
-          // console.log(res.tapIndex);
-          wx.navigateTo({
-            url: '../addComment/addComment?id=' + commentDetail.movie_id + '&c_type=' + res.tapIndex,
-          })
+      qcloud.request({
+        url: config.service.releaseList,
+        success: result => {
+          let data = result.data
+          if (!data.code) {
+            let commentList = data.data,
+              isAdd = false;
+            commentList.forEach(item => {
+              if (item.movie_id == commentDetail.movie_id) {
+                isAdd = true;
+                wx.showToast({
+                  title: '你已经写过影评',
+                  icon: 'loading'
+                })
+              }
+            })
+            if (!isAdd) {
+              wx.showActionSheet({
+                itemList: ['文字', '音频'],
+                success: res => {
+                  // console.log(res.tapIndex);
+                  wx.navigateTo({
+                    url: '../addComment/addComment?id=' + commentDetail.movie_id + '&c_type=' + res.tapIndex,
+                  })
+                }
+              })
+            }
+          }
         }
       })
     } else {

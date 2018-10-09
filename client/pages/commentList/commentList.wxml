@@ -1,4 +1,5 @@
 <!--pages/commentList/commentList.wxml-->
+<view class="comment-list-page">
 <view class="comment-list-item" wx:for="{{commentList}}" wx:key="id" bindtap="ToCommentDetail" data-idx="{{index}}">
   <view class="comment-list-info">
     <image class="comment-list-avatar" src="{{item.avatar}}"></image>
@@ -9,5 +10,6 @@
     <image class="audio-icon" src="../../images/play.png"></image>
     <text class="audio-text">15s</text>
   </view>
+</view>
 </view>
 <view class="user-tabbar" bindtap="ToHome">回到首页</view>

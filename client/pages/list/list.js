@@ -12,27 +12,22 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    this.getMovieList()
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.getMovieList()
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    this.getMovieList(() => {
+      wx.stopPullDownRefresh()
+    })
   },
 
-  getMovieList() {
+  getMovieList(callback) {
     wx.showLoading({
       title: '电影数据加载中...',
     })
@@ -58,6 +53,9 @@ Page({
           icon: 'none',
           title: '电影数据加载错误',
         })
+      },
+      complete: () => {
+        typeof callback === 'function' && callback()
       }
     })
   },

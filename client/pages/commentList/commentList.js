@@ -24,7 +24,16 @@ Page({
     }
   },
 
-  getCommentList(id) {
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+    this.getCommentList(this.data.id, () => {
+      wx.stopPullDownRefresh()
+    })
+  },
+
+  getCommentList(id, callback) {
     qcloud.request({
       url: config.service.commentList,
       data: {
@@ -37,6 +46,9 @@ Page({
             commentList: data.data
           })
         }
+      },
+      complete: () => {
+        typeof callback === 'function' && callback()
       }
     })
   },

@@ -69,13 +69,33 @@ Page({
       movieDetail = this.data.movieDetail;
     let url = idx ? '../addComment/addComment' : '../commentList/commentList';
     if (idx) {
-      wx.showActionSheet({
-        itemList: ['文字', '音频'],
-        success: res => {
-          console.log(res.tapIndex);
-          wx.navigateTo({
-            url: url + '?id=' + movieDetail.id + '&c_type=' + res.tapIndex,
-          })
+      qcloud.request({
+        url: config.service.releaseList,
+        success: result => {
+          let data = result.data
+          if (!data.code) {
+            let commentList = data.data,
+              isAdd = false;
+            commentList.forEach(item => {
+              if (item.movie_id == movieDetail.id) {
+                wx.navigateTo({
+                  url: '../commentDetail/commentDetail?cid=' + item.id + '&mid=' + item.movie_id,
+                })
+                isAdd = true;
+              }
+            })
+            if (!isAdd) {
+              wx.showActionSheet({
+                itemList: ['文字', '音频'],
+                success: res => {
+                  console.log(res.tapIndex);
+                  wx.navigateTo({
+                    url: url + '?id=' + movieDetail.id + '&c_type=' + res.tapIndex,
+                  })
+                }
+              })
+            }
+          }
         }
       })
     } else {
